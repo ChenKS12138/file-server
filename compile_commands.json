@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/Users/cattchen/Documents/codes/cpp-file-server",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/Users/cattchen/Documents/codes/cpp-file-server/include -I/Users/cattchen/Documents/codes/cpp-file-server -isystem /usr/local/include  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -std=gnu++17 -o CMakeFiles/FileServer.dir/app/main.cc.o -c /Users/cattchen/Documents/codes/cpp-file-server/app/main.cc",
+  "file": "/Users/cattchen/Documents/codes/cpp-file-server/app/main.cc"
+},
+{
+  "directory": "/Users/cattchen/Documents/codes/cpp-file-server",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/Users/cattchen/Documents/codes/cpp-file-server/include -I/Users/cattchen/Documents/codes/cpp-file-server -isystem /usr/local/include  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -std=gnu++17 -o CMakeFiles/FileServer.dir/src/starter.cc.o -c /Users/cattchen/Documents/codes/cpp-file-server/src/starter.cc",
+  "file": "/Users/cattchen/Documents/codes/cpp-file-server/src/starter.cc"
+},
+{
+  "directory": "/Users/cattchen/Documents/codes/cpp-file-server",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/Users/cattchen/Documents/codes/cpp-file-server/include -I/Users/cattchen/Documents/codes/cpp-file-server -isystem /usr/local/include  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -std=gnu++17 -o CMakeFiles/FileServer.dir/src/util.cc.o -c /Users/cattchen/Documents/codes/cpp-file-server/src/util.cc",
+  "file": "/Users/cattchen/Documents/codes/cpp-file-server/src/util.cc"
+}
+]
