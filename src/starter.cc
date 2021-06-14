@@ -56,7 +56,9 @@ void handle_request(beast::string_view doc_root,
       result += file.is_directory() ? "directory: " : "file: ";
       result += "<a href=\"./";
       result += filename;
-      result += "/";
+      if (file.is_directory()) {
+        result += "/";
+      }
       result += "\">";
       result += filename;
       result += "</a>";
