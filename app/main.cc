@@ -9,8 +9,8 @@
 int main(int argc, char **argv) {
   if (argc != 4) {
     std::cerr << "Usage: FileServer <address> <port> <doc_root>\n"
-              << "  Example:\n"
-              << "  > FileServer 0.0.0 8080 .\n";
+              << "Example:\n"
+              << "> FileServer 0.0.0 8080 .\n";
     return EXIT_FAILURE;
   }
   try {

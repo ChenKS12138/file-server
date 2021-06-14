@@ -2,9 +2,14 @@
 #define _INCLUDE_UTIL
 
 #include <boost/beast.hpp>
+#include <filesystem>
 #include <iostream>
+#include <string>
+#include <sys/stat.h>
+#include <vector>
 
 namespace beast = boost::beast;
+namespace fs = std::filesystem;
 
 // This is the C++11 equivalent of a generic lambda.
 // The function object is used to send an HTTP message.
@@ -32,5 +37,10 @@ template <class Stream> struct send_lambda {
 auto mime_type(beast::string_view path) -> beast::string_view;
 auto path_cat(beast::string_view base, beast::string_view path) -> std::string;
 auto log_error(beast::error_code error_code, char const *what) -> void;
+
+auto path_exist(std::string path) -> bool;
+auto path_is_dir(std::string path) -> bool;
+auto path_is_file(std::string path) -> bool;
+auto read_dir(std::string path) -> std::vector<fs::directory_entry>;
 
 #endif

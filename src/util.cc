@@ -1,7 +1,5 @@
 #include "util.h"
 
-namespace beast = boost::beast;
-
 auto mime_type(beast::string_view path) -> beast::string_view {
   using beast::iequals;
   auto const ext = [&path] {
@@ -64,9 +62,27 @@ auto path_cat(boost::beast::string_view base, boost::beast::string_view path)
   if (result.back() == path_separator)
     result.resize(result.size() - 1);
   result.append(path.data(), path.size());
-  return result;
+  return std::filesystem::absolute(result);
 }
 
 auto log_error(boost::beast::error_code error_code, const char *what) -> void {
   std::cerr << what << ":" << error_code.message() << "\n";
+}
+
+auto path_exist(std::string path) -> bool { return fs::exists(path); }
+
+auto path_is_dir(std::string path) -> bool { return fs::is_directory(path); }
+
+auto path_is_file(std::string path) -> bool {
+  return fs::is_regular_file(path);
+}
+
+auto read_dir(std::string path) -> std::vector<fs::directory_entry> {
+  std::vector<fs::directory_entry> result;
+  if (path_is_dir(path)) {
+    for (auto &p : fs::directory_iterator(path)) {
+      result.push_back(p);
+    }
+  }
+  return result;
 }

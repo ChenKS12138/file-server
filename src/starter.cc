@@ -1,6 +1,8 @@
 #include "starter.h"
+#include "util.h"
 
 namespace http = boost::beast::http;
+namespace fs = std::filesystem;
 
 template <class Body, class Allocator, class Send>
 void handle_request(beast::string_view doc_root,
@@ -42,6 +44,32 @@ void handle_request(beast::string_view doc_root,
     return res;
   };
 
+  auto const render_directory = [&req](std::string path,
+                                       std::vector<fs::directory_entry> files) {
+    std::string result = "";
+    result += "<h1>Index Of ";
+    result += path;
+    result += "</h1>";
+    for (auto &file : files) {
+      auto filename = fs::path(file).filename();
+      result += "<div>";
+      result += file.is_directory() ? "directory: " : "file: ";
+      result += "<a href=\"./";
+      result += filename;
+      result += "/";
+      result += "\">";
+      result += filename;
+      result += "</a>";
+    }
+    http::response<http::string_body> res{http::status::ok, req.version()};
+    res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
+    res.set(http::field::content_type, "text/html");
+    res.keep_alive(req.keep_alive());
+    res.body() = result;
+    res.prepare_payload();
+    return res;
+  };
+
   // Make sure we can handle the method
   if (req.method() != http::verb::get && req.method() != http::verb::head)
     return send(bad_request("Unknown HTTP-method"));
@@ -53,8 +81,10 @@ void handle_request(beast::string_view doc_root,
 
   // Build the path to the requested file
   std::string path = path_cat(doc_root, req.target());
-  if (req.target().back() == '/')
-    path.append("index.html");
+
+  if (path_is_dir(path)) {
+    return send(render_directory(std::string(req.target()), read_dir(path)));
+  }
 
   // Attempt to open the file
   beast::error_code ec;

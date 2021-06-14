@@ -2,6 +2,7 @@
 #define _INCLUDE_SERVER
 
 #include <boost/beast.hpp>
+#include <filesystem>
 #include <string>
 #include <thread>
 
